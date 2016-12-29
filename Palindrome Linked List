@@ -1,0 +1,30 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    ListNode firsthalf;
+    public boolean isPalindrome(ListNode head) {
+        firsthalf=head;
+        boolean result=checkpali(head);
+        return result;
+    }
+    public boolean checkpali(ListNode lasthalf)
+    {
+        if(lasthalf==null)
+         return true;
+        boolean subresult=checkpali(lasthalf.next);
+        if(!subresult)
+          return false;
+        if(lasthalf.val!=firsthalf.val)
+            subresult=false;
+        else
+           subresult=true;
+        firsthalf=firsthalf.next;
+        return subresult;
+    }
+}
